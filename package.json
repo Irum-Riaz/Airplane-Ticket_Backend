@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "nodemon index.js",
-     "vercel-build": "npm rebuild canvas --platform=linux"
+    "dev": "nodemon index.js"
   },
   "type": "module",
   "keywords": [],
@@ -15,7 +14,6 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.3",
-    "canvas": "^2.11.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",

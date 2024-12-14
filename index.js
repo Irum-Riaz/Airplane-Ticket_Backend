@@ -7,7 +7,7 @@ import flightRoute from "./Routes/flights.js";
 import bookingRoute from "./Routes/booking.js";
 import ticketRoute from "./Routes/tickets.js";
 import multer from "multer";
-import { createCanvas, loadImage } from "canvas";
+// import { createCanvas, loadImage } from "canvas";
 import jsQR from "jsqr"; // Make sure to install jsQR library
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -77,28 +77,28 @@ app.post("/api/v1/decode-qr", upload.single("image"), async (req, res) => {
   }
 });
 
-async function decodeQRFromImage(imageData) {
-  try {
-    const image = await loadImage(imageData);
-    const canvas = createCanvas(image.width, image.height);
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(image, 0, 0);
-    const imageDataCanvas = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const code = jsQR(
-      imageDataCanvas.data,
-      imageDataCanvas.width,
-      imageDataCanvas.height
-    );
-    if (code) {
-      return code.data;
-    } else {
-      return null;
-    }
-  } catch (error) {
-    console.error("Error decoding QR code from image:", error);
-    throw error;
-  }
-}
+// async function decodeQRFromImage(imageData) {
+//   try {
+//     const image = await loadImage(imageData);
+//     const canvas = createCanvas(image.width, image.height);
+//     const ctx = canvas.getContext("2d");
+//     ctx.drawImage(image, 0, 0);
+//     const imageDataCanvas = ctx.getImageData(0, 0, canvas.width, canvas.height);
+//     const code = jsQR(
+//       imageDataCanvas.data,
+//       imageDataCanvas.width,
+//       imageDataCanvas.height
+//     );
+//     if (code) {
+//       return code.data;
+//     } else {
+//       return null;
+//     }
+//   } catch (error) {
+//     console.error("Error decoding QR code from image:", error);
+//     throw error;
+//   }
+// }
 
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/flights", flightRoute);
