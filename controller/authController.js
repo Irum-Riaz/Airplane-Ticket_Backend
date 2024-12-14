@@ -1,6 +1,6 @@
 import User from "../models/userSchema.js";
 import Ticket from "../models/ticketSchema.js";
-// import bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const jwtSecretKey =
@@ -49,8 +49,8 @@ export const registerUser = async (req, res) => {
     // const hashedPassword = await bcrypt.hash(password, saltRounds);
 
 
-    // const salt = await bcrypt.genSalt(saltRounds);
-    // const hashedPassword = await bcrypt.hash(password, salt);
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = new User({
       name: name,
@@ -82,11 +82,11 @@ export const loginUser = async (req, res) => {
       return res.status(404).json({ error: "Invalid email or password" });
     }
 
-    // const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    // if (!isPasswordValid) {
-    //   return res.status(401).json({ error: "Invalid email or password" });
-    // }
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
 
     // Create payload with user ID and email
 
