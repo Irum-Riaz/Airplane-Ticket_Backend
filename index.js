@@ -9,9 +9,11 @@ import ticketRoute from "./Routes/tickets.js";
 import multer from "multer";
 // import { createCanvas, loadImage } from "canvas";
 import jsQR from "jsqr"; // Make sure to install jsQR library
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
+// const cookieParser = require("cookie-parser");
+import cookieParser from "cookie-parser";
 
+// const bodyParser = require("body-parser");
+import bodyParser from "body-parser";
 
 dotenv.config();
 
