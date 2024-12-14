@@ -1,6 +1,7 @@
 import User from "../models/userSchema.js";
 import Ticket from "../models/ticketSchema.js";
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const jwtSecretKey =
@@ -46,7 +47,11 @@ export const registerUser = async (req, res) => {
   }
 
   try {
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    // const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = new User({
       name: name,
